@@ -32,6 +32,7 @@ class Modulo_Division{
         System.out.println("The sum of the digits is: " + ((one/100)+(two/10)+(three/1)));
     }
 }
+//Test
 class Distance{
     void distance() {
         Scanner sc = new Scanner(System.in);
