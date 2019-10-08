@@ -487,12 +487,12 @@ class Functions {
         String tmpnm ="";
         String tmpno ="";
         for (int i = 0; i<Journal.Index; i++) {
-            String[] test = {Journal.list[i].getDate(), Journal.list[i].getTitle()};
+            String[] test = {Journal.list[i].getDate()};
             for (int j = i+1; j<Journal.Index; j++) {
-                String[] vs = {Journal.list[j].getDate(), Journal.list[j].getTitle()};
-                if(test[0].contentEquals(vs[0])&&test[1].contentEquals(vs[1])) {
-                    if (Journal.list[i].getMood().contentEquals(Journal.list[j].getMood())) {
-                    }else {tmpnm = Journal.list[j].getMood();}
+                String[] vs = {Journal.list[j].getDate()};
+                if(test[0].contentEquals(vs[0])) {
+                    if (Journal.list[i].getDate().contentEquals(Journal.list[j].getDate())) {
+                    }else {tmpnm = Journal.list[j].getDate();}
                     if (Journal.list[i].getJournal().contentEquals(Journal.list[j].getJournal())) {
                     }else {tmpno = Journal.list[j].getJournal();}
                     String journal = Journal.list[i].getJournal() + ", " + tmpnm + " " + tmpno;
