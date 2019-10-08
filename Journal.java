@@ -427,7 +427,7 @@ class Functions {
         Journal.list[i].setMood(tmp);
 
 
-        tmp =(String) JOptionPane.showInputDialog(null, "The current journal entry is " + Journal.list[i].getJournal() + " what do you want the new journal to be?");
+        tmp =(String) JOptionPane.showInputDialog(null, "The current journal entry is '" + Journal.list[i].getJournal() + "' what do you want the new journal to be?");
         Journal.list[i].setJournal(tmp);
     }
 
