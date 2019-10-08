@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 //Original Phonebook Group Project by Spencer Lowery, John Agubosim, Evan Cothern
-//Journal update by John Agubosim 
+//Journal update by John Agubosim
 
 public class Journal extends javax.swing.JFrame {
     static int Index = 0;
@@ -79,7 +79,6 @@ public class Journal extends javax.swing.JFrame {
         fSortButton = new javax.swing.JButton();
         lSortButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        sortbyDateButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,13 +137,6 @@ public class Journal extends javax.swing.JFrame {
             }
         });
 
-      fSortButton.setText("Sort by Date");
-        fSortButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortbyDateButtonActionPerformed(evt);
-            }
-        }); 
-
         lSortButton.setText("Sort by Title");
         lSortButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +157,7 @@ public class Journal extends javax.swing.JFrame {
                 saveButtonActionPerformed(evt);
             }
         });
-        
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,8 +167,6 @@ public class Journal extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(fSortButton)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(lSortButton)
                                                 .addGap(33, 33, 33)
@@ -228,7 +218,6 @@ public class Journal extends javax.swing.JFrame {
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(fSortButton)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(deleteButton)
                                                 .addComponent(saveButton)
@@ -261,18 +250,6 @@ public class Journal extends javax.swing.JFrame {
             Logger.getLogger(Journal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void sortbyDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortbyDateButtonActionPerformed
-        try {
-            deleteList();
-            Functions.readFile();
-            listUpdate();
-            clearSelection();
-        } catch (Exception ex) {
-            System.out.println("No file found");
-            Logger.getLogger(Journal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_sortbyDateActionPerformed
 
     private void sqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sqButtonActionPerformed
         try {
@@ -364,7 +341,6 @@ public class Journal extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lSortButton;
     private javax.swing.JButton mergeButton;
-    private javax.swing.JButton sortbyDateButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton sqButton;
     // End of variables declaration//GEN-END:variables
@@ -393,12 +369,12 @@ class Functions {
         P.close();
     }
     public static void createEntry() {
-       String tmpd = (String) JOptionPane.showInputDialog(null, "Please enter today's date:");
-       
+        String tmpd = (String) JOptionPane.showInputDialog(null, "Please enter today's date:");
+
         while(tmpd.length() <= 1) {
             //tmpd = (String) JOptionPane.showInputDialog(null, "That is not a valid imput please try again:");
         }
-       String tmpt = (String) JOptionPane.showInputDialog(null, "Please enter the title");
+        String tmpt = (String) JOptionPane.showInputDialog(null, "Please enter the title");
         while( tmpt.length() <= 1) {
             tmpt = (String) JOptionPane.showInputDialog(null, "That is not a valid input please try again:");
         }
@@ -426,22 +402,20 @@ class Functions {
     }
     public static void editEntry(int i) {
         String tmp;
-        tmp =(String) JOptionPane.showInputDialog(null, "The current date is " + Journal.list[i].getDate() + " what do you want the new first name to be?");
+        tmp =(String) JOptionPane.showInputDialog(null, "The current date is '" + Journal.list[i].getDate() + "' what do you want the new first name to be?");
         while(tmp.length() <= 1) {
             tmp = (String) JOptionPane.showInputDialog(null, "That is not a valid first name code please try again.");
         }
-        tmp = tmp.toUpperCase();
         Journal.list[i].setDate(tmp);
-        tmp =(String) JOptionPane.showInputDialog(null, "The current title is " + Journal.list[i].getTitle() + " what do you want the new last name to be?");
+        tmp =(String) JOptionPane.showInputDialog(null, "The current title is '" + Journal.list[i].getTitle() + "' what do you want the new last name to be?");
         while(tmp.length() <= 1) {
 
             tmp =(String) JOptionPane.showInputDialog(null, "That is not a valid last name code please try again.");
         }
-        tmp = tmp.toUpperCase();
         Journal.list[i].setTitle(tmp);
 
 
-        tmp =(String) JOptionPane.showInputDialog(null, "The current mood is " + Journal.list[i].getMood() + " what do you want the new mood to be?");
+        tmp =(String) JOptionPane.showInputDialog(null, "The current mood is '" + Journal.list[i].getMood() + "' what do you want the new mood to be?");
         boolean n = checkMood(tmp);
 
         while(n==false) {
@@ -456,7 +430,7 @@ class Functions {
         tmp =(String) JOptionPane.showInputDialog(null, "The current journal entry is " + Journal.list[i].getJournal() + " what do you want the new journal to be?");
         Journal.list[i].setJournal(tmp);
     }
-   
+
     public static void sortByTitle() {
         try {
             Functions.writeFile();
